@@ -1,0 +1,835 @@
+{
+  "intents": [
+    {
+      "intent": "AreasMestrado",
+      "examples": [
+        {
+          "text": "Áreas"
+        },
+        {
+          "text": "Existe mais de uma área ?"
+        },
+        {
+          "text": "Linhas de pesquisa"
+        },
+        {
+          "text": "Quais áreas posso escolher ?"
+        },
+        {
+          "text": "Quantas áreas ?"
+        }
+      ],
+      "description": "Intenção para mostrar ao usuário as especializações de mestrado de engenharia elétrica."
+    },
+    {
+      "intent": "Bolsas",
+      "examples": [
+        {
+          "text": "Bolsas"
+        },
+        {
+          "text": "Como consigo bolsa de estudo ?"
+        },
+        {
+          "text": "Fomento"
+        },
+        {
+          "text": "Isenção"
+        },
+        {
+          "text": "Possui bolsa ?"
+        }
+      ],
+      "description": "Intenção relacionada à bolsas de estudo"
+    },
+    {
+      "intent": "Disciplinas",
+      "examples": [
+        {
+          "text": "E quais as disciplinas ?"
+        },
+        {
+          "text": "Matérias"
+        },
+        {
+          "text": "Quais as disciplinas de cada área ?"
+        },
+        {
+          "text": "Qual o conteúdo ?"
+        }
+      ],
+      "description": "Intenção de descobrir as disciplinas de cada área."
+    },
+    {
+      "intent": "Duração",
+      "examples": [
+        {
+          "text": "Qual a duração da pós ?"
+        },
+        {
+          "text": "Quantos anos para terminar ?"
+        },
+        {
+          "text": "Tempo do curso"
+        }
+      ],
+      "description": "Intenção em relação à duração do curso."
+    },
+    {
+      "intent": "Horários",
+      "examples": [
+        {
+          "text": "Horário"
+        },
+        {
+          "text": "Horários de Aula"
+        },
+        {
+          "text": "Quais horários ?"
+        },
+        {
+          "text": "Quais os horários de aula disponíveis ?"
+        },
+        {
+          "text": "Qual o período ?"
+        }
+      ],
+      "description": "Intenção em relação aos horários de aula disponíveis."
+    },
+    {
+      "intent": "Mensalidade",
+      "examples": [
+        {
+          "text": "Mensalidade"
+        },
+        {
+          "text": "Preço do curso"
+        },
+        {
+          "text": "Quanto custa ?"
+        },
+        {
+          "text": "Valor"
+        },
+        {
+          "text": "Valor da mensalidade"
+        }
+      ],
+      "description": "Intenção para a mensalidade da pós"
+    },
+    {
+      "intent": "ProcessoSeletivo",
+      "examples": [
+        {
+          "text": "Até quando me inscrevo ?"
+        },
+        {
+          "text": "Como faço para me inscrever ?"
+        },
+        {
+          "text": "Data de inscrição"
+        },
+        {
+          "text": "Inscrever no processo"
+        },
+        {
+          "text": "Inscrição"
+        },
+        {
+          "text": "Processo seletivo"
+        }
+      ],
+      "description": "Intenção de inscrição no processo seletivo."
+    },
+    {
+      "intent": "Prosseguir",
+      "examples": [],
+      "description": "Intenção para prosseguir a conversa."
+    }
+  ],
+  "entities": [
+    {
+      "entity": "Área",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Artificial",
+          "synonyms": [
+            "IA",
+            "Robótica"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Nano",
+          "synonyms": [
+            "Circuitos Integrados",
+            "Nanotecnologia"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Não",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Sinais",
+          "synonyms": [
+            "Imagens"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "Disciplinas",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "IA_Disc",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Nano_Disc",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Sinais_Disc",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "Processo",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Doutorado",
+          "synonyms": [
+            "Doc"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Mestrado",
+          "synonyms": [
+            "Mestre"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Não",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-date",
+      "values": []
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Bem-vindo",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Opa, eu sou o Electrobot Mestre, no que posso lhe ajudar ?"
+              },
+              {
+                "text": "Salve, está afim de fazer uma pós ? O Electrobot Mestre está aqui para ajudar."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Bem-vindo"
+    },
+    {
+      "type": "standard",
+      "title": "Em outros casos",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Não consegui compreender o que disse, poderia refazer a pergunta ?"
+              },
+              {
+                "text": "Poxa, não consegui entender o que disse :/ posso ser mestre mas tenho minhas limitações."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "digress_in": "does_not_return",
+      "dialog_node": "Em outros casos",
+      "previous_sibling": "node_9_1633558203808",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "IA",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Há uma crescente demanda por profissionais altamente qualificados nas áreas de automação, sistemas inteligentes e principalmente na área de robótica autônoma e móvel. A importância do desenvolvimento científico e da capacitação tecnológica nessas áreas fica evidente quando se analisa a necessidade crescente da sociedade e da indústria por robôs cada vez mais autônomos e inteligentes, e da automação de processos orientados por uma produção sob demanda. "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_8_1633535590162",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1633558203808"
+      },
+      "conditions": "@Área:Artificial",
+      "dialog_node": "node_10_1633537566922",
+      "previous_sibling": "node_7_1633537565890"
+    },
+    {
+      "type": "standard",
+      "title": "Doutorado",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "As inscrições podem ser feitas via e-mail ipgss\\@fei.edu.br, mediante o envio eletrônico dos documentos solicitados abaixo em arquivos individuais (formato PDF) de até 1MB.\n\nCópias dos Diplomas do Curso Superior e do Curso de Mestrado*\nCópias dos Históricos Escolares do Curso Superior e do Curso de Mestrado*\nCurriculum Lattes atualizado\n1 foto recente\nPGE - 15 Solicitação Orientador - Clique aqui\nCópia do RG – não é aceito o CNH*\nCópia do CPF OU apresentar o Comprovante de Inscrição (Acesse o site da Receita Federal)*\nCópia da Certidão de Nascimento OU Casamento*\nCópia do comprovante de residência\n\nImportante: Serão solicitados os originais dos documentos apenas para os alunos matriculados."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1633554769516",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1633558203808"
+      },
+      "conditions": "@Processo:Doutorado",
+      "dialog_node": "node_10_1633556687230"
+    },
+    {
+      "type": "standard",
+      "title": "Horário disponível",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "No momento, temos apenas o período noturmo, que compreende aulas das 19:10 às 22:40."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1633558203808"
+      },
+      "conditions": "#Horários",
+      "dialog_node": "node_1_1633535852881",
+      "previous_sibling": "node_2_1633535853184"
+    },
+    {
+      "type": "standard",
+      "title": "Bolsas",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "O programa de mestrado e doutorado da conta com bolsas da agência de fomento federal CAPES para dedicação em tempo integral e parcial além de que oferece bolsas de isenção da mensalidade. Os alunos interessados em obter bolsa de estudos devem protocolar solicitação no ato da matrícula, os critérios para concessão da bolsa são baseados na avaliação de mérito do desempenho acadêmico e da experiência profissional dos alunos aprovados no processo seletivo. Os alunos também podem solicitar bolsas de estudo externas de orgãos como a FAPESP (https://fapesp.br/) e o CNPq (https://www.gov.br/cnpq/pt-br). "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1633558203808"
+      },
+      "conditions": "#Bolsas",
+      "dialog_node": "node_2_1633535852361",
+      "previous_sibling": "node_9_1633535771105"
+    },
+    {
+      "type": "standard",
+      "title": "Duração de curso",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Opa, o mestrado tem uma duração mínima de 12 meses e máxima de 36 meses, enquanto o doutorado pode ser concluído apenas em um período de 24 à 60 meses."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1633558203808"
+      },
+      "conditions": "#Duração",
+      "dialog_node": "node_2_1633535853184",
+      "previous_sibling": "node_2_1633535852361"
+    },
+    {
+      "type": "standard",
+      "title": "Sinais",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Processamento de sinais é um campo multidisciplinar da Engenharia Elétrica que tem grande interseção com ciências básicas, como a Física e a Matemática. É também essencial para integrar as contribuições das engenharias e disciplinas científicas no projeto de sistemas complexos que interagem com os seres humanos, dispositivos, máquinas e o meio ambiente, tanto como uma ferramenta fundamental, devido aos sinais envolvidos, mas também como impulsionadora de novas metodologias de pesquisa aplicada."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_8_1633535590162",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1633558203808"
+      },
+      "conditions": "@Área:Sinais",
+      "dialog_node": "node_3_1633537567874",
+      "previous_sibling": "node_10_1633537566922"
+    },
+    {
+      "type": "standard",
+      "title": "Não",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Sem problemas, vamos continuar nossa conversa então. Gostaria de perguntar mais algo ?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_8_1633535590162",
+      "conditions": "@Área:Não",
+      "dialog_node": "node_4_1633554025515",
+      "previous_sibling": "node_3_1633537567874"
+    },
+    {
+      "type": "standard",
+      "title": "Sinais",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Essas aqui são as disciplinas disponíveis para escolha na área de Processamento de sinais e imagens:\n\nAcompanhamento de Dissertação / Tese\nAplicações em Processamento de Sinais\nBiopotenciais: Características, Aquisição e Processamento\nFundamentos da Visão Computacional\nInteligência Computacional\nIntrodução à Engenharia Biomédica\nIntrodução à Pesquisa Científica\nMétodos Numéricos Aplicados em Análise de Sinais\nProcessamento de Sinais Discretos no Tempo\nProcessamento do Sinal de Voz\nTécnicas Avançadas de Programação\nRedação Ciêntífica\nReconhecimento de Padrões em Estatística"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1633564193253",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1633558203808"
+      },
+      "conditions": "@Disciplinas:Sinais_Disc",
+      "dialog_node": "node_5_1633564402300",
+      "previous_sibling": "node_8_1633564400492"
+    },
+    {
+      "type": "standard",
+      "title": "Processo Seletivo",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Opa, aí sim em cara, caso queira se inscrever no processo, a data de inscrição compreende o período de 01/06/2021 a 17/09/2021, as entrevistas vão do dia 08/09/2021 a 21/09/2021 e por fim, o resultado do processo sai no dia 23/09/2021."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "title": "Gostaria de realizar a inscrição em um dos programas ?",
+            "options": [
+              {
+                "label": "Sim, de doutorado",
+                "value": {
+                  "input": {
+                    "text": "Doutorado"
+                  }
+                }
+              },
+              {
+                "label": "Sim, de mestrado",
+                "value": {
+                  "input": {
+                    "text": "Mestrado"
+                  }
+                }
+              },
+              {
+                "label": "Não no momento.",
+                "value": {
+                  "input": {
+                    "text": "Não"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "conditions": "#ProcessoSeletivo",
+      "dialog_node": "node_6_1633554769516",
+      "previous_sibling": "node_1_1633535852881"
+    },
+    {
+      "type": "standard",
+      "title": "Disciplinas ",
+      "output": {
+        "generic": [
+          {
+            "title": "Então, qual área te desperta interesse ?",
+            "options": [
+              {
+                "label": "NANOELETRÔNICA E CIRCUITOS INTEGRADOS",
+                "value": {
+                  "input": {
+                    "text": "Nano_Disc"
+                  }
+                }
+              },
+              {
+                "label": "INTELIGÊNCIA ARTIFICIAL APLICADA À AUTOMAÇÃO E ROBÓTICA",
+                "value": {
+                  "input": {
+                    "text": "IA_Disc"
+                  }
+                }
+              },
+              {
+                "label": " PROCESSAMENTO DE SINAIS E IMAGENS",
+                "value": {
+                  "input": {
+                    "text": "Sinais_Disc"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "conditions": "#Disciplinas",
+      "dialog_node": "node_6_1633564193253",
+      "previous_sibling": "node_6_1633554769516"
+    },
+    {
+      "type": "standard",
+      "title": "Nanotecnologia",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Uma das áreas mais importantes dentro da Engenharia Elétrica é a área de Nanoeletrônica e Circuitos Integrados. Essa área vem recebendo os mais altos níveis de investimentos mundiais. Ela é considerada a base para as demais ciências e é responsável por fornecer os insumos básicos (circuitos integrados) para a fabricação de equipamentos eletrônicos das mais diversas áreas do conhecimento, objetivando a melhoria da qualidade de vida do ser humano."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_8_1633535590162",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1633558203808"
+      },
+      "conditions": "@Área:Nano",
+      "dialog_node": "node_7_1633537565890"
+    },
+    {
+      "type": "standard",
+      "title": "Não",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Sem problemas, vamos continuar nossa conversa então. Gostaria de perguntar mais algo ?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1633554769516",
+      "conditions": "@Processo:Não",
+      "dialog_node": "node_7_1633556690870",
+      "previous_sibling": "node_9_1633556689022"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Essas aqui são as disciplinas disponíveis para escolha na área de Inteligência Artificial Aplicada à Automação e Robótica:\n\nAcompanhamento de Dissertação / Tese\nAlgoritmos Computacionais\nEngenharia de Software em Experimentos Científicos\nFundamentos da Inteligência Artificial\nInteligência Artificial Probabilística\nInteração Humano-Computador em Sistemas Adaptativos\nProgramação Científica\nRobótica Móvel\nTópicos Especiais em Aprendizagem"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1633564193253",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1633558203808"
+      },
+      "conditions": "@Disciplinas:IA_Disc",
+      "dialog_node": "node_7_1633564403949",
+      "previous_sibling": "node_5_1633564402300"
+    },
+    {
+      "type": "standard",
+      "title": "Áreas de Mestrado",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Opa, quer saber quais áreas você pode escolher né ? Nós contamos com as linhas de pesquisa de NANOELETRÔNICA E CIRCUITOS INTEGRADOS, INTELIGÊNCIA ARTIFICIAL APLICADA À AUTOMAÇÃO E ROBÓTICA e PROCESSAMENTO DE SINAIS E IMAGENS. "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "title": "Gostaria de saber mais sobre alguma área ?",
+            "options": [
+              {
+                "label": "Nanoeletrônica e circuitos integrados",
+                "value": {
+                  "input": {
+                    "text": "Nano"
+                  }
+                }
+              },
+              {
+                "label": "Inteligência artificial aplicada à automação e robótica",
+                "value": {
+                  "input": {
+                    "text": "Artificial"
+                  }
+                }
+              },
+              {
+                "label": "Processamento de sinais e imagens",
+                "value": {
+                  "input": {
+                    "text": "Sinais"
+                  }
+                }
+              },
+              {
+                "label": "Não no momento.",
+                "value": {
+                  "input": {
+                    "text": "Não"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "conditions": "#AreasMestrado",
+      "dialog_node": "node_8_1633535590162",
+      "previous_sibling": "Bem-vindo"
+    },
+    {
+      "type": "standard",
+      "title": "Nano",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Essas aqui são as disciplinas disponíveis para escolha na área de Nanotecnologia e circuitos integrados:\n\nAcompanhamento de Dissertação / Tese\nAspectos Específicos de Transistores Nanométrico\nCaracterização Elétrica de Dispositivos MOS\nCircuitos e Sistemas Analógicos\nDispositivos Semicondutores\nDispositivos Semicondutores Implementados em Tecnologia SOI\nDispositivos SOI MOSFETs de Múltiplas Portas\nFabricação e Modelagem de Transistores MOS: Transistores Nanométricos e TFTs.\nInfluência da Temperatura na Operação de Dispositivos Eletrônicos\nIntrodução ao Projeto de Circuitos Integrados Dedicados\nModelagem de Transistores MOS em tecnologia SOI\nSimulação de Processos e Dispositivos Eletrônicos\nTópicos Avançados de Projetos de Circuitos Integrados Analógicos"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1633564193253",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1633558203808"
+      },
+      "conditions": "@Disciplinas:Nano_Disc",
+      "dialog_node": "node_8_1633564400492"
+    },
+    {
+      "type": "standard",
+      "title": "Mensalidade",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Então, no atual momento, a mensalidade tanto para mestrado quanto para doutorado é de R$ 2.265,00."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1633558203808"
+      },
+      "conditions": "#Mensalidade",
+      "dialog_node": "node_9_1633535771105",
+      "previous_sibling": "node_8_1633535590162"
+    },
+    {
+      "type": "standard",
+      "title": "Mestrado",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "As inscrições podem ser feitas via e-mail ipgss\\@fei.edu.br, mediante o envio eletrônico dos documentos solicitados abaixo em arquivos individuais (formato PDF) de até 1MB.\n\nDuas cartas de recomendação (doc)\nCópia do diploma do Curso Superior devidamente registrado ou equivalente\nCópia do Histórico Escolar do Curso Superior\nCópia do RG - não é aceita a CNH\nCópia do CPF ou apresentar o Comprovante de Inscrição (Acesse o site da Receita Federal)\nCópia da Certidão de Nascimento ou Casamento\nCópia do comprovante de residência\nCurriculum Vitae atualizado\nUma foto recente.\n\nImportante: Serão solicitados os originais dos documentos apenas para os alunos matriculados."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1633554769516",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1633558203808"
+      },
+      "conditions": "@Processo:Mestrado",
+      "dialog_node": "node_9_1633556689022",
+      "previous_sibling": "node_10_1633556687230"
+    },
+    {
+      "type": "standard",
+      "title": "Prosseguir",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Vamos continuar nossa conversa, gostaria de perguntar mais algo ?"
+              },
+              {
+                "text": "Eaí, mais alguma dúvida ?"
+              },
+              {
+                "text": "Posso lhe ajudar em algo mais ? Pergunte ao mestre o/"
+              },
+              {
+                "text": "Opa, quer saber de mais algo ?"
+              },
+              {
+                "text": "Tem mais alguma pergunta ? Pode mandar!!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "dialog_node": "node_9_1633558203808",
+      "previous_sibling": "node_6_1633564193253"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "disambiguation": {
+      "prompt": "Você quis dizer:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "Nenhuma das anteriores"
+    },
+    "human_agent_assist": {
+      "prompt": "Você quis dizer:"
+    }
+  },
+  "learning_opt_out": false,
+  "name": "Atendimento de Pós Graduação",
+  "language": "pt-br",
+  "description": ""
+}
